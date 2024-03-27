@@ -1,2 +1,5 @@
-package practicum6.primeservices.repository;public class AuthenticationFileRepository {
+package practicum6.primeservices.repository;
+@Repository
+public class AuthenticationFileRepository
+    implements IAuthenticationRepository {
 }
