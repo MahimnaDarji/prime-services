@@ -1,5 +1,5 @@
-package service;
+package practicum6.primeservices.repository;
 
-public interface IAuthenticationService {
+public interface IAuthenticationRepository {
     boolean isPrime(long n);
 }

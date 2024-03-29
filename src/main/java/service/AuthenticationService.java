@@ -1,2 +1,4 @@
-package service;public class AuthenticationService {
+package service;
+
+public class AuthenticationService {
 }
