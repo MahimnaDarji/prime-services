@@ -1,5 +1,6 @@
 package service;
 
 public interface IAuthenticationService {
-    boolean isPrime(long n);
+    boolean register(Customer customer) throws IOException;
+    boolean login(String username, String password) throws IOException;
 }

@@ -23,3 +23,11 @@ JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwks) {
 JwtDecoder jwtDecoder() throws JOSEException {
     return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
 }
+
+@Bean
+public AuthenticationManager authManager(UserDetailsService userDetailsService) {
+    var authprovider = new DaoAuthenticationProvider();
+    authprovider.setUserDetailsService(userDetailsService);
+    authprovider.setPasswordEncoder(new BCryptPasswordEncoder());
+    return new ProviderManager(authprovider);
+}
