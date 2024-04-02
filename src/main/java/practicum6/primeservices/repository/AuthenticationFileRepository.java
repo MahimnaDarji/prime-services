@@ -57,7 +57,7 @@ public class AuthenticationFileRepository
                             .withUsername(username)
                             .password(customer.getPassword())
                             .build();
-                } catch (I0Exception e) {
+                } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }

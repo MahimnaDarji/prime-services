@@ -1,0 +1,46 @@
+services:
+   mongo-database:
+      image: mongo:7.0.0
+      container_name: mongo-database
+      ports:
+      - "4002:27017"
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: password
+
+   primes-database:
+      image: postgres:alpine
+      ports:
+         - "4003:5432"
+      environment:
+         POSTGRES_PASSWORD: password
+         POSTGRES_DB: primes
+
+   arithmetic-service:
+     image: arithmetic-service
+     build:
+        context: ../arithmetic-service
+        dockerfile: Dockerfile
+     container_name: arithmetic-service
+     ports:
+        - "4000:3000"
+     environment:
+        - PORT=3000
+     restart: "no"  
+ 
+   quotation-service:
+     image: quotation-service
+     build:
+        context: ../quotation-service
+        dockerfile: Dockerfile
+     container_name: quotation-service
+     ports:
+        - "4004:3004"
+     environment:
+        - PORT=3004
+        - FILE_STORAGE_HOST=azure-storage
+        - FILE_STORAGE_PORT=3001
+        - DBHOST=mongodb://admin:password@mongo-database:27017
+        - DBNAME=quotations-db
+     restart: "always"

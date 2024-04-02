@@ -1,5 +1,8 @@
 package practicum6.primeservices.repository;
 
-public interface AuthenticationDBRepository {
-    
+@Repository
+public interface AuthenticationDBRepository extends CrudRepository<Customer, String> 
+{
+    Customer findByUsername(String username); 
 }
+

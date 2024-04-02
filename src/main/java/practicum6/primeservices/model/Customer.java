@@ -1,5 +1,7 @@
 package practicum6.primeservices.model;
 
+@Table
+@Entity
 public class Customer {
     private String username;
     private String password;
