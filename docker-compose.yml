@@ -1,4 +1,12 @@
 services:
+   rabbit-mq:
+     image: rabbitmq:3.12.4-management
+     container_name: rabbit-mq
+     ports:
+       - "4006:5672"
+       - "4007:15672"
+     restart: always
+
    mongo-database:
       image: mongo:7.0.0
       container_name: mongo-database
@@ -44,3 +52,14 @@ services:
         - DBHOST=mongodb://admin:password@mongo-database:27017
         - DBNAME=quotations-db
      restart: "always"
+
+   history-database:
+     image: postgres:alpine
+     container_name: history-database
+     ports:
+       - "4008:5432"
+     environment:
+       POSTGRES_PASSWORD: password
+       POSTGRES_DB: history
+
+
